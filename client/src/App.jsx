@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Sidebar, Navbar } from './components';
 import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
+
 
 const App = () => {
   return (
@@ -19,10 +20,19 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-campaign" element={<CreateCampaign />} />
           <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+          <Route path='/external' element={<ExternalRedirect />}></Route>
         </Routes>
       </div>
     </div>
   )
+}
+
+function ExternalRedirect() {
+  React.useEffect(() => {
+    window.location.href = 'https://sepolia-faucet.pk910.de/';
+  }, []);
+
+  return <p>Redirecting...</p>;
 }
 
 export default App
